@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #dropBox {
+            width: 300px;
+            height: 160px;
+            border: dashed black 1px;
+            text-align: center;
+            line-height: 60px;
+            margin-bottom: 20px;
+        }
+        
+        #container {
+            width: 100px;
+        }
+        
+        #container img {
+            height: 100px;
+            width: 100px;
+            border: 5px solid skyblue;
+        }
+        
+        #container p {
+            margin: 0 auto;
+            text-align: center;
+            font-size: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id='demo'>
+        <div id="dropBox">
+            请将图片拖拽至此处
+        </div>
+        <div id="container">
+        </div>
+    </div>
+    <script>
+        window.onload = () => {
+            let dropBox = document.getElementById('dropBox')
+            var container = document.getElementById('container')
+            dropBox.addEventListener('dragover', (e) => {
+                e.preventDefault()
+            }, false)
+            dropBox.addEventListener('drop', (e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                Array.prototype.forEach.call(e.dataTransfer.files, file => {
+                    if (file && file.type.match('image.*')) {
+                        var lastModified = file.lastModifiedDate;
+                        var lastModifiedStr = lastModified ? lastModified.toLocaleDateString() +
+                            ' ' +
+                            lastModified.toLocaleTimeString() : 'n/a';
+                        let reader = new FileReader()
+                        reader.onload = (e) => {
+                            var img = document.createElement('img')
+                            var p = document.createElement('p')
+                            img.src = e.target.result;
+                            container.appendChild(img)
+                            container.appendChild(p)
+                            p.innerHTML = '<div>' + '<strong>' + file.name + '</strong> (' + (
+                                    file
+                                    .type ||
+                                    'n/a') + ')<br> 大小：' +
+                                file.size +
+                                '字节<br>修改时间：' + lastModifiedStr + '</div>'
+
+                        }
+                        reader.readAsDataURL(file)
+
+                    }
+                });
+            })
+
+        }
+    </script>
+</body>
+
+</html>

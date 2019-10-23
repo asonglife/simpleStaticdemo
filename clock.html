@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+        .box1 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+        }
+        
+        .box2 {
+            font-size: 70px;
+            color: red;
+        }
+        
+        #clock {
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        #hour,
+        #minute,
+        #second {
+            font-size: 82px;
+            display: inline;
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="clock">
+        <div class="box1">
+            <p id="hour"></p>
+        </div>
+        <div class="box2">:</div>
+        <div class="box1">
+            <p id="minute"></p>
+        </div>
+        <div class="box2">:</div>
+        <div class="box1">
+            <p id="second"></p>
+        </div>
+
+    </div>
+    <script>
+        function clock() {
+            var date = new Date()
+            var nowHour = date.getHours()
+            var nowMinute = date.getMinutes()
+            var nowSecond = date.getSeconds()
+            document.getElementById('hour').innerText = nowHour
+            document.getElementById('minute').innerText = nowMinute
+            document.getElementById('second').innerText = nowSecond
+        }
+        setInterval('clock()', 1000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #calendar {
+            width: 280px;
+            border: 1px solid #000000;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        #year {
+            display: inline;
+            margin-left: 18px;
+        }
+        
+        #month {
+            display: inline;
+            margin-right: 18px;
+        }
+        
+        #prev,
+        #next {
+            cursor: pointer;
+            padding: 6px 10px;
+            font-size: 10px
+        }
+        
+        #header {
+            text-align: center;
+            margin-bottom: 18px
+        }
+        
+        #weekday {
+            overflow: hidden;
+            list-style: none;
+        }
+        
+        #weekday>li {
+            float: left;
+            width: 38px;
+            height: 26px;
+            line-height: 26px;
+            text-align: center;
+        }
+        
+        #date {
+            overflow: hidden;
+            list-style: none;
+            /* padding-left: 8px; */
+        }
+        
+        #date>li {
+            float: left;
+            width: 32px;
+            height: 32px;
+            margin: 1px 1px;
+            border: solid 2px #fff;
+            line-height: 34px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .now-day {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="calendar">
+        <div id="header">
+            <button id="prev">上个月</button>
+            <p id="year">年</p>
+            <p id="month">月</p>
+            <button id="next">下个月</button>
+        </div>
+
+        <ul id="weekday">
+            <li>日</li>
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li>六</li>
+        </ul>
+        <ul id="date">
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var nowTime = new Date();
+        var nowYear = nowTime.getFullYear();
+        var nowMonth = nowTime.getMonth();
+        var nowDay = nowTime.getDate();
+
+        showCalendar();
+
+        function showCalendar() {
+            document.getElementById('date').innerHTML = "";
+            let year = nowTime.getFullYear(); //当前年份 
+            let month = nowTime.getMonth(); //当前月 
+            let day = nowTime.getDate(); //当前天 
+            let arr = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+            document.getElementById('year').innerText = year;
+            document.getElementById('month').innerText = arr[month];
+
+            let getLastDay = new Date(year, month + 1, 0).getDate(); //当月最后一天是几号
+            let getfisrtDay = new Date(year, month, 1).getDay(); //当月第一天是星期几
+
+            for (let i = 0; i < getfisrtDay; i++) {
+                var li = document.createElement('li');
+                document.getElementById('date').appendChild(li);
+            }
+
+            for (let i = 1; i <= getLastDay; i++) {
+                var li = document.createElement('li');
+                li.innerText = i;
+                if (year == nowYear && month == nowMonth && i == nowDay) {
+                    li.className = "now-day";
+                }
+
+                document.getElementById('date').appendChild(li);
+            }
+
+        }
+
+        document.getElementById("next").onclick = function() {
+            nowTime.setMonth(nowTime.getMonth() + 1);
+            showCalendar();
+        };
+        document.getElementById("prev").onclick = function() {
+            nowTime.setMonth(nowTime.getMonth() - 1);
+            showCalendar();
+        };
+    </script>
+</body>
+
+</html>

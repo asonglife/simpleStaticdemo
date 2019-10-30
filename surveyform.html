@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #surveycontainer {
+            box-shadow: 10px 10px 15px black;
+            padding: 15px;
+        }
+        
+        #title {
+            border-bottom: 5px solid #ffae00;
+            color: #ffae00;
+            text-align: center;
+        }
+        
+        #content {
+            padding: 10px;
+        }
+        
+        #conten li {
+            margin-bottom: 8px;
+        }
+        
+        .textborder input {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: solid;
+            outline: none;
+        }
+        
+        .submit {
+            text-align: center;
+        }
+        
+        .submit input {
+            background-color: #ffae00;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="surveycontainer">
+        <div id="title">
+            <h2>手机移动支付业务问卷调查</h2>
+        </div>
+        <div id="content">
+            <form>
+                <ol>
+                    <li>您的教育程度是？</li>
+                    <input type="radio" name="education" value="高中" required>高中
+                    <input type="radio" name="education" value="大专" required>大专
+                    <input type="radio" name="education" value="本科" required>本科
+                    <input type="radio" name="education" value="硕士及研究生" required>硕士研究生
+                    <input type="radio" name="education" value="博士及以上" required>博士及以上
+                    <li>您的年龄段是？</li>
+                    <input type="radio" name="age" value="18岁以下" required>18岁以下
+                    <input type="radio" name="age" value="18-25岁" required>18-25岁
+                    <input type="radio" name="age" value="26-30岁" required>26-30岁
+                    <input type="radio" name="age" value="31-35岁" required>31-35岁
+                    <input type="radio" name="age" value="35岁以上" required>35岁以上
+                    <li>你是否使用过手机移动支付业务？</li>
+                    <input type="radio" name="used" value="1" required>从未听说过
+                    <input type="radio" name="used" value="2" required>听说过但未使用
+                    <input type="radio" name="used" value="3" required>偶尔使用
+                    <input type="radio" name="used" value="4" required>经常使用
+                    <li>您了解下列哪些手机移动支付业务？（可多选）</li>
+                    <input type="checkbox" name="isKnow" value="支付宝">支付宝
+                    <input type="checkbox" name="isKnow" value="微信支付">微信支付
+                    <input type="checkbox" name="isKnow" value="电信翼支付">电信翼支付
+                    <input type="checkbox" name="isKnow" value="Apple apply">Apple apply
+                    <input type="checkbox" name="isKnow" value="以上均不了解">以上均不了解
+                    <li>您看重以下哪些移动支付功能？（可多选）</li>
+                    <div><input type="checkbox" name="isStrong" value="10">话费/游戏币充值</div>
+                    <div><input type="checkbox" name="isStrong" value="20">刷手机加油</div>
+                    <div><input type="checkbox" name="isStrong" value="30">刷手机购物</div>
+                    <div><input type="checkbox" name="isStrong" value="40">刷手机乘坐公交/轻轨/地铁</div>
+                    <div><input type="checkbox" name="isStrong" value="50">水电煤/有线电视/宽带远程</div>
+                    <div><input type="checkbox" name="isStrong" value="60">享受联盟商户优惠折扣</div>
+                    <div><input type="checkbox" name="isStrong" value="70">以上均不感兴趣</div>
+                </ol>
+                <div class="textborder">
+                    您的姓名<input type="text" name="name" required> 您的职业
+                    <input type="text" name="job" required> 联系电话
+                    <input type="text" name="tel" required>
+                </div>
+                <div class="submit">
+                    <input type="submit" id="submit" value="提交问卷">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        window.onload = () => {
+            let isKnow = document.getElementsByName("isKnow");
+            let submit = document.getElementById('submit')
+            let isStrong = document.getElementsByName('isStrong')
+            let focount = 0;
+            let ficount = 0;
+            let folimit = 1;
+            let filimit = 1;
+            submit.onclick = () => {
+                for (let index = 0; index < isKnow.length; index++) {
+                    if (isKnow[index].checked) {
+                        focount = focount + 1;
+                    }
+                }
+                if (focount < folimit) {
+                    alert("第四题至少选中" + limit + "项");
+                    return false;
+                }
+                for (let index = 0; index < isStrong.length; index++) {
+                    if (isStrong[index].checked) {
+                        ficount = ficount + 1;
+                    }
+                }
+                if (ficount < filimit) {
+                    alert("第五题至少选中" + filimit + "项");
+                    return false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

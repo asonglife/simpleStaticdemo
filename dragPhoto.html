@@ -44,7 +44,7 @@
             let dropBox = document.getElementById('dropBox')
             var container = document.getElementById('container')
             dropBox.addEventListener('dragover', (e) => {
-                e.preventDefault()
+                e.preventDefault() //取消该事件默认不能放置其他元素的行为
             }, false)
             dropBox.addEventListener('drop', (e) => {
                 e.preventDefault()

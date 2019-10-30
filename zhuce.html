@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #surveycontainer {
+            box-shadow: 10px 10px 15px black;
+            padding: 15px;
+        }
+        
+        #title {
+            border-bottom: 5px solid #ffae00;
+            color: #ffae00;
+            text-align: center;
+        }
+        
+        #content {
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .submit {
+            text-align: center;
+        }
+        
+        .submit input {
+            background-color: #ffae00;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="surveycontainer">
+        <div id="title">
+            <h2>用户注册</h2>
+        </div>
+        <div id="content">
+            <form>
+                <div>
+                    用户名<input type="text" name="username" required autocapitalize="on">
+                </div>
+                <div> 密码
+                    <input type="password" name="pass" required autocapitalize="on"></div>
+                <div> 确认密码
+                    <input type="password" name="pass" required autocapitalize="on"> </div>
+                <div>姓名
+                    <input type="text" name="name" required autocapitalize="on"></div>
+                <div>邮箱
+                    <input type="email" name="email" required autocapitalize="on"></div>
+                <div class="submit">
+                    <input type="submit" id="submit" value="提交">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+
+</html>
